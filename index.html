@@ -674,6 +674,10 @@ footer .pqr a{color:var(--gold2);font-weight:800;word-break:break-all}
           <input id="telefono" name="telefono" type="tel" inputmode="tel" autocomplete="tel" placeholder="Ej: 300 123 4567" required>
         </div>
         <div>
+          <label for="telefono-alternativo">Teléfono alternativo (opcional)</label>
+          <input id="telefono-alternativo" name="telefono-alternativo" type="tel" inputmode="tel" autocomplete="tel" placeholder="Ej: 310 123 4567">
+        </div>
+        <div>
           <label for="correo">Correo electrónico (opcional)</label>
           <input id="correo" name="correo" type="email" inputmode="email" autocomplete="email" placeholder="Ej: valentina@correo.com">
         </div>
@@ -823,6 +827,7 @@ footer .pqr a{color:var(--gold2);font-weight:800;word-break:break-all}
     e.preventDefault();
     var nombre = form.nombre.value.trim();
     var telefono = form.telefono.value.replace(/\D/g, '');
+    var telefonoAlternativo = form['telefono-alternativo'].value.replace(/\D/g, '');
     var correo = form.correo.value.trim();
     var departamento = form.departamento.value;
     var ciudad = form.ciudad.value.trim();
@@ -830,6 +835,7 @@ footer .pqr a{color:var(--gold2);font-weight:800;word-break:break-all}
 
     if (nombre.length < 3) return mostrarError('Escribe tu nombre completo.', form.nombre);
     if (telefono.length < 7 || telefono.length > 15) return mostrarError('Revisa tu número de teléfono.', form.telefono);
+    if (telefonoAlternativo && (telefonoAlternativo.length < 7 || telefonoAlternativo.length > 15)) return mostrarError('Revisa tu teléfono alternativo.', form['telefono-alternativo']);
     if (correo && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) return mostrarError('Revisa tu correo electrónico.', form.correo);
     if (!departamento) return mostrarError('Selecciona tu departamento.', form.departamento);
     if (ciudad.length < 2) return mostrarError('Escribe tu ciudad.', form.ciudad);
@@ -853,9 +859,14 @@ footer .pqr a{color:var(--gold2);font-weight:800;word-break:break-all}
       'attributes[Departamento]': departamento,
       'attributes[Ciudad]': ciudad,
       'attributes[Teléfono]': telefono,
-      'note': resumen + ' | Dirección: ' + direccion
+      'note': resumen + (telefonoAlternativo ? ' | Teléfono alternativo: ' + telefonoAlternativo : '') + ' | Dirección: ' + direccion
     };
-    if (correo) datos['checkout[email]'] = correo;
+    if (correo) {
+      datos['checkout[email]'] = correo;
+    } else if (telefonoAlternativo) {
+      datos['checkout[phone]'] = telefonoAlternativo;
+    }
+    if (telefonoAlternativo) datos['attributes[Teléfono alternativo]'] = telefonoAlternativo;
     var query = Object.keys(datos).map(function (k) {
       return encodeURIComponent(k) + '=' + encodeURIComponent(datos[k]);
     }).join('&');
