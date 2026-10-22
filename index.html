@@ -8,13 +8,16 @@
 <meta name="theme-color" content="#0b0b0c">
 <link rel="canonical" href="https://aoneclicks.com.co/">
 <link rel="icon" type="image/png" href="img/logo-aoneclicks.png">
+<link rel="apple-touch-icon" href="img/logo-aoneclicks.png">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_CO">
 <meta property="og:site_name" content="AoneClicks Shopping">
 <meta property="og:title" content="TYMO RING | Plancha para cabello rizado en 20 s · AoneClicks Shopping">
 <meta property="og:description" content="Calienta en 20 segundos, 5 niveles de temperatura, peine alisador y apagado automático. $70.900 con envío gratis y pago contra entrega.">
 <meta property="og:url" content="https://aoneclicks.com.co/">
-<meta property="og:image" content="https://aoneclicks.com.co/img/producto.webp">
+<meta property="og:image" content="https://aoneclicks.github.io/cepillo-alisador-oferta-especial/img/logo-aoneclicks.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://aoneclicks.github.io/cepillo-alisador-oferta-especial/img/logo-aoneclicks.png">
 <style>
 :root{
   --bg:#0b0b0c; --card:#1a1a1d; --line:#2a2a2e;
@@ -671,8 +674,8 @@ footer .pqr a{color:var(--gold2);font-weight:800;word-break:break-all}
           <input id="telefono" name="telefono" type="tel" inputmode="tel" autocomplete="tel" placeholder="Ej: 300 123 4567" required>
         </div>
         <div>
-          <label for="correo">Correo electrónico</label>
-          <input id="correo" name="correo" type="email" inputmode="email" autocomplete="email" placeholder="Ej: valentina@correo.com" required>
+          <label for="correo">Correo electrónico (opcional)</label>
+          <input id="correo" name="correo" type="email" inputmode="email" autocomplete="email" placeholder="Ej: valentina@correo.com">
         </div>
         <div>
           <label for="departamento">Departamento</label>
@@ -827,7 +830,7 @@ footer .pqr a{color:var(--gold2);font-weight:800;word-break:break-all}
 
     if (nombre.length < 3) return mostrarError('Escribe tu nombre completo.', form.nombre);
     if (telefono.length < 7 || telefono.length > 15) return mostrarError('Revisa tu número de teléfono.', form.telefono);
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) return mostrarError('Revisa tu correo electrónico.', form.correo);
+    if (correo && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) return mostrarError('Revisa tu correo electrónico.', form.correo);
     if (!departamento) return mostrarError('Selecciona tu departamento.', form.departamento);
     if (ciudad.length < 2) return mostrarError('Escribe tu ciudad.', form.ciudad);
     if (direccion.length < 6) return mostrarError('Escribe tu dirección completa.', form.direccion);
@@ -840,15 +843,19 @@ footer .pqr a{color:var(--gold2);font-weight:800;word-break:break-all}
     // Abre el carrito de Shopify con los datos ya escritos para que solo confirme el pedido.
     // El departamento va en "note" porque Shopify no lo precarga en el campo de zona.
     var datos = {
-      'checkout[email]': correo,
       'checkout[shipping_address][first_name]': nombreCorto,
       'checkout[shipping_address][last_name]': apellidos,
       'checkout[shipping_address][phone]': telefono,
       'checkout[shipping_address][address1]': direccion,
       'checkout[shipping_address][city]': ciudad,
+      'checkout[shipping_address][province]': departamento,
       'checkout[shipping_address][country]': 'Colombia',
+      'attributes[Departamento]': departamento,
+      'attributes[Ciudad]': ciudad,
+      'attributes[Teléfono]': telefono,
       'note': resumen + ' | Dirección: ' + direccion
     };
+    if (correo) datos['checkout[email]'] = correo;
     var query = Object.keys(datos).map(function (k) {
       return encodeURIComponent(k) + '=' + encodeURIComponent(datos[k]);
     }).join('&');
