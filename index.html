@@ -112,6 +112,10 @@ h3{font-size:1.2rem;margin-bottom:8px}
 .ba-col .media{position:absolute;inset:0;border-radius:0;border:0}
 .ba-col .media::before{content:none}
 .ba-col .media img{object-fit:cover;object-position:50% 25%}
+.evid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:100%;max-width:760px;margin:14px auto 0}
+.evid .ba-col{aspect-ratio:3/4}
+.evid .ba-tag{top:8px;left:8px;font-size:.62rem;padding:4px 7px;white-space:normal;max-width:calc(100% - 16px);line-height:1.2}
+@media (min-width:768px){.evid .ba-tag{font-size:.8rem;padding:6px 12px;top:12px;left:12px}}
 .comp{max-width:520px;margin:0 auto;aspect-ratio:1/1;border:2px solid var(--gold);border-radius:22px;background:radial-gradient(circle at 50% 30%,#3a2b14,#0b0b0c 70%);box-shadow:0 20px 60px rgba(212,166,74,.12)}
 .ba-tag{position:absolute;top:12px;left:12px;z-index:4;background:rgba(0,0,0,.75);color:var(--gold2);font-size:.8rem;font-weight:900;letter-spacing:.5px;padding:6px 12px;border-radius:8px;pointer-events:none}
 .steps{counter-reset:s;display:grid;gap:14px}
@@ -121,11 +125,10 @@ h3{font-size:1.2rem;margin-bottom:8px}
 
 /* Testimonios */
 .quote{font-size:1rem;margin:10px 0 16px}
-.autor{display:flex;align-items:center;gap:12px}
-.avatar{width:56px;height:56px;flex:0 0 56px;border-radius:50%;overflow:hidden;border:2px solid var(--gold);background:radial-gradient(circle at 50% 30%,#3a2b14,#0b0b0c 70%)}
-.avatar .media{border-radius:50%;border:0;height:100%;aspect-ratio:auto}
-.avatar .media::before{font-size:.45rem;padding:4px}
 .verificada{font-size:.75rem;color:var(--wa);font-weight:700}
+.tcard{text-align:left}
+.tfoto{margin:16px 0 14px;padding:10px;border-radius:16px;border:1px solid var(--gold);background:radial-gradient(circle at 50% 0%,#3a2b14 0%,#0b0b0c 75%);box-shadow:0 0 30px rgba(212,166,74,.15)}
+.tfoto img{display:block;width:100%;height:auto;border-radius:10px}
 
 /* Oferta */
 .oferta{background:var(--card);border:2px solid var(--gold);border-radius:24px;padding:28px 22px;text-align:center;box-shadow:0 0 60px rgba(212,166,74,.15)}
@@ -147,6 +150,8 @@ h3{font-size:1.2rem;margin-bottom:8px}
 @media (min-width:768px){.transp{grid-template-columns:repeat(4,minmax(0,1fr))}}
 .transp-card{height:100%;background:var(--card);border:2px solid var(--gold);border-radius:18px;padding:12px 10px 16px;text-align:center;box-shadow:0 0 30px rgba(212,166,74,.12);transition:transform .3s,box-shadow .3s}
 .transp-card:hover{transform:translateY(-6px);box-shadow:0 14px 40px rgba(240,205,122,.3)}
+a.transp-card{display:block;text-decoration:none;cursor:pointer}
+a.transp-card:focus-visible{outline:3px solid var(--gold2);outline-offset:4px}
 .transp-logo{height:112px;background:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;padding:12px;overflow:hidden}
 .transp-logo img{max-width:100%;max-height:100%;object-fit:contain;animation:float 3.6s ease-in-out infinite}
 .transp-card b{display:block;margin-top:14px;color:var(--txt);font-size:1.05rem;font-weight:900}
@@ -197,8 +202,10 @@ h3{font-size:1.2rem;margin-bottom:8px}
 
 /* Footer */
 .brand{display:flex;justify-content:center;align-items:center;padding:20px 20px 4px;background:var(--bg)}
+.brand a{display:block;line-height:0}
 .brand img{display:block;width:min(200px,54vw);height:auto}
-footer .brand-foot{display:block;width:min(180px,50vw);height:auto;margin:0 auto 22px}
+footer .brand-link{display:block;width:fit-content;margin:0 auto 22px}
+footer .brand-foot{display:block;width:min(180px,50vw);height:auto;margin:0}
 footer{padding:36px 20px;text-align:center;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
 footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-bottom:14px}
 footer nav a{text-decoration:none}
@@ -211,6 +218,12 @@ footer .pqr a{color:var(--gold2);font-weight:800;word-break:break-all}
 .fab .btn{flex:1;max-width:none;padding:14px;font-size:1rem;box-shadow:none;animation:none}
 .fab .wa{width:56px;height:56px;flex:0 0 56px;border-radius:14px;background:var(--wa);display:flex;align-items:center;justify-content:center;color:#000;text-decoration:none;animation:wa-ring 2s infinite}
 .fab .wa .ic{width:28px;height:28px}
+
+/* Pestaña flotante de dudas (WhatsApp) */
+.dudas{position:fixed;right:14px;bottom:88px;z-index:79;display:flex;align-items:center;gap:8px;padding:9px 14px 9px 10px;border-radius:999px;background:var(--wa);color:#000;font-weight:800;font-size:.85rem;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.45);opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .35s ease,transform .35s ease;animation:wa-ring 2s infinite}
+.dudas.show{opacity:1;transform:none;pointer-events:auto}
+.dudas .ic{width:22px;height:22px;flex:0 0 22px}
+@media (min-width:768px){.dudas{bottom:24px;right:24px}}
 .regalo-ico .ic{width:40px;height:40px}
 .regalos-tit .ic{width:1.35em;height:1.35em;vertical-align:-.2em;color:var(--gold2)}
 .escasez .ic{width:1.3em;height:1.3em;color:var(--cta);flex:0 0 auto}
@@ -250,6 +263,7 @@ footer .pqr a{color:var(--gold2);font-weight:800;word-break:break-all}
   <defs>
     <symbol id="i-flame" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2c.5 3.2 4.5 5.4 4.5 10a4.5 4.5 0 0 1-9 0c0-2.2 1-3.6 2.1-4.8.2 1.6.8 2.6 1.9 3.1C11 8.4 11.4 5 12 2z"/></symbol>
     <symbol id="i-star" viewBox="0 0 24 24"><polygon fill="currentColor" points="12 2 15.1 8.3 22 9.3 17 14.1 18.2 21 12 17.8 5.8 21 7 14.1 2 9.3 8.9 8.3 12 2"/></symbol>
+    <symbol id="i-star-o" viewBox="0 0 24 24"><polygon fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" points="12 2 15.1 8.3 22 9.3 17 14.1 18.2 21 12 17.8 5.8 21 7 14.1 2 9.3 8.9 8.3 12 2"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="M20 6 9 17l-5-5"/></symbol>
     <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></g></symbol>
     <symbol id="i-truck" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h13v10H1zM14 10h4l4 4v2h-8"/><circle cx="5.5" cy="18.5" r="2"/><circle cx="18.5" cy="18.5" r="2"/></g></symbol>
@@ -276,7 +290,9 @@ footer .pqr a{color:var(--gold2);font-weight:800;word-break:break-all}
 <!-- LOGO SUPERIOR -->
 
 <div class="brand">
-  <img src="img/logo-aoneclicks.png" alt="AoneClicks Shopping" width="600" height="377" onerror="this.remove()">
+  <a href="https://aoneclicks.com.co/" target="_blank" rel="noopener" aria-label="Ir a la tienda AoneClicks Shopping">
+    <img src="img/logo-aoneclicks.png" alt="AoneClicks Shopping" width="600" height="377" onerror="this.remove()">
+  </a>
 </div>
 
 <!-- 1. BARRA SUPERIOR -->
@@ -317,8 +333,8 @@ footer .pqr a{color:var(--gold2);font-weight:800;word-break:break-all}
   <div class="wrap">
     <div class="proof-row">
       <div class="stars" role="img" aria-label="Calificación 5 de 5 estrellas"><svg class="ic star" style="--d:0s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.2s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.4s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.6s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.8s" aria-hidden="true"><use href="#i-star"/></svg></div>
-      <div><span class="big">4.9/5</span> <span class="muted">· calificación de nuestras clientas</span></div>
-      <div><span class="big">+2.500</span> <span class="muted">clientes satisfechos</span></div>
+      <div><span class="big">4.6/5</span> <span class="muted">· calificación de nuestras clientas</span></div>
+      <div><span class="big">+1.600</span> <span class="muted">clientes satisfechos</span></div>
     </div>
     <div class="seals">
       <div><b><svg class="ic beat" aria-hidden="true"><use href="#i-lock"/></svg></b>Compra segura</div>
@@ -438,29 +454,35 @@ footer .pqr a{color:var(--gold2);font-weight:800;word-break:break-all}
     <h2 class="reveal">Lo que dicen nuestras clientas</h2>
     <p class="lead reveal">Mujeres como tú que dejaron de pelear con su pelo.</p>
     <div class="grid grid-3" style="text-align:left">
-      <div class="card reveal">
-        <div class="stars" role="img" aria-label="Calificación 5 de 5 estrellas"><svg class="ic star" style="--d:0s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.2s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.4s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.6s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.8s" aria-hidden="true"><use href="#i-star"/></svg></div>
-        <p class="quote">"Mi pelo rizado nunca se había visto tan controlado. Lo que más me gustó es que se apaga sola; ya no me preocupo si la olvido encendida."</p>
-        <div class="autor">
-          <div class="avatar"><div class="media" data-label="FOTO" style="border:0;border-radius:50%"><img src="img/cliente1.jpg" alt="Valentina R." onerror="this.remove()"></div></div>
-          <div><strong>Valentina R.</strong><div class="muted">Medellín</div><div class="verificada"><svg class="ic chk" aria-hidden="true"><use href="#i-check"/></svg>Compra verificada</div></div>
-        </div>
+      <div class="card reveal tcard">
+        <div class="stars" role="img" aria-label="Calificación 4 de 5 estrellas"><svg class="ic star" style="--d:0s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.2s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.4s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.6s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.8s" aria-hidden="true"><use href="#i-star-o"/></svg></div>
+        <p class="quote">"Muy buen producto."</p>
+        <div class="tfoto"><img src="img/testimonio1.jpg" alt="Foto real de una clienta: caja de la plancha TYMO RING" loading="lazy"></div>
+        <div class="verificada"><svg class="ic chk" aria-hidden="true"><use href="#i-check"/></svg>Testimonio real</div>
       </div>
-      <div class="card reveal">
+      <div class="card reveal tcard">
         <div class="stars" role="img" aria-label="Calificación 5 de 5 estrellas"><svg class="ic star" style="--d:0s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.2s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.4s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.6s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.8s" aria-hidden="true"><use href="#i-star"/></svg></div>
-        <p class="quote">"Llegó en dos días, pagué al recibir y en 20 segundos ya estaba lista. El peine es un antes y un después para desenredar."</p>
-        <div class="autor">
-          <div class="avatar"><div class="media" data-label="FOTO" style="border:0;border-radius:50%"><img src="img/cliente2.jpg" alt="Laura M." onerror="this.remove()"></div></div>
-          <div><strong>Laura M.</strong><div class="muted">Bogotá</div><div class="verificada"><svg class="ic chk" aria-hidden="true"><use href="#i-check"/></svg>Compra verificada</div></div>
-        </div>
+        <p class="quote">"Excelente producto y llegó a tiempo."</p>
+        <div class="tfoto"><img src="img/testimonio2.jpg" alt="Foto real de una clienta: paquete de la plancha TYMO RING" loading="lazy"></div>
+        <div class="verificada"><svg class="ic chk" aria-hidden="true"><use href="#i-check"/></svg>Testimonio real</div>
       </div>
-      <div class="card reveal">
+      <div class="card reveal tcard">
         <div class="stars" role="img" aria-label="Calificación 5 de 5 estrellas"><svg class="ic star" style="--d:0s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.2s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.4s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.6s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.8s" aria-hidden="true"><use href="#i-star"/></svg></div>
-        <p class="quote">"Tenía miedo de quemarme el pelo y los 5 niveles me dieron tranquilidad. Ahora la uso casi a diario."</p>
-        <div class="autor">
-          <div class="avatar" role="img" aria-label="Daniela P." style="display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--gold);font-size:18px">DP</div>
-          <div><strong>Daniela P.</strong><div class="muted">Cali</div><div class="verificada"><svg class="ic chk" aria-hidden="true"><use href="#i-check"/></svg>Compra verificada</div></div>
-        </div>
+        <p class="quote">"Calienta rápido y alisa el cabello de manera uniforme mientras lo cepillo, dejando un acabado suave y brillante. Es muy fácil de manejar, no tira del pelo y reduce mucho el frizz. Ideal para quienes quieren un alisado rápido sin usar planchas tradicionales. Además, el diseño es cómodo y ligero"</p>
+        <div class="tfoto"><img src="img/testimonio3.jpg" alt="Foto real de una clienta: caja de la plancha TYMO RING sobre un sofá" loading="lazy"></div>
+        <div class="verificada"><svg class="ic chk" aria-hidden="true"><use href="#i-check"/></svg>Testimonio real</div>
+      </div>
+      <div class="card reveal tcard">
+        <div class="stars" role="img" aria-label="Calificación 5 de 5 estrellas"><svg class="ic star" style="--d:0s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.2s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.4s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.6s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.8s" aria-hidden="true"><use href="#i-star"/></svg></div>
+        <p class="quote">"¡Increíble! Esta plancha es una maravilla. Se calienta al instante y cumple lo que promete: un alisado perfecto en una sola pasada. Olvídate de repasar mechón a mechón. Ahorra tiempo y deja el pelo suave y sin daño. ¡Totalmente recomendada para quienes buscan resultados rápidos y profesionales!"</p>
+        <div class="tfoto"><img src="img/testimonio4.jpg" alt="Foto real de una clienta: plancha TYMO RING de color verde" loading="lazy"></div>
+        <div class="verificada"><svg class="ic chk" aria-hidden="true"><use href="#i-check"/></svg>Testimonio real</div>
+      </div>
+      <div class="card reveal tcard">
+        <div class="stars" role="img" aria-label="Calificación 5 de 5 estrellas"><svg class="ic star" style="--d:0s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.2s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.4s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.6s" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic star" style="--d:.8s" aria-hidden="true"><use href="#i-star"/></svg></div>
+        <p class="quote">"a llegado bien empaquetado todavía no la e probado"</p>
+        <div class="tfoto"><img src="img/testimonio5.jpg" alt="Foto real de una clienta: plancha TYMO RING sobre un lavamanos" loading="lazy"></div>
+        <div class="verificada"><svg class="ic chk" aria-hidden="true"><use href="#i-check"/></svg>Testimonio real</div>
       </div>
     </div>
     <div class="btn-wrap" style="margin-top:36px">
@@ -513,7 +535,7 @@ footer .pqr a{color:var(--gold2);font-weight:800;word-break:break-all}
     <h2 class="reveal">Tú no pierdes nada, ganas tu mañana</h2>
     <div class="grid grid-3" style="margin-top:28px">
       <div class="card reveal"><span class="ico"><svg class="ic bob" aria-hidden="true"><use href="#i-cash"/></svg></span><h3>Pagas al recibir</h3><p class="muted">Tu pedido llega a tu casa y pagas en ese momento. Sin tarjetas ni pagos por adelantado.</p></div>
-      <div class="card reveal"><span class="ico"><svg class="ic bob" aria-hidden="true"><use href="#i-truck"/></svg></span><h3>Envío gratis y rápido</h3><p class="muted">Entrega en 2 a 5 días hábiles según tu ciudad, con número de guía por WhatsApp.</p></div>
+      <div class="card reveal"><span class="ico"><svg class="ic bob" aria-hidden="true"><use href="#i-truck"/></svg></span><h3>Envío gratis y rápido</h3><p class="muted">Entrega en 4 a 7 días hábiles según tu ciudad, con número de guía por WhatsApp.</p></div>
       <div class="card reveal"><span class="ico"><svg class="ic spin" aria-hidden="true"><use href="#i-refresh"/></svg></span><h3>Garantía de 15 días</h3><p class="muted">Si no te convence, te devolvemos tu dinero según nuestras condiciones.</p></div>
     </div>
   </div>
@@ -539,6 +561,26 @@ footer .pqr a{color:var(--gold2);font-weight:800;word-break:break-all}
         </div>
       </div>
     </div>
+    <div class="evid reveal">
+      <div class="ba-col">
+        <span class="ba-tag">CON SU RESPECTIVA CAJA</span>
+        <div class="media" data-label="FOTO EVIDENCIA 1 · img/evidencia1.png">
+          <img src="img/evidencia1.png" alt="Plancha TYMO RING dentro de su caja, con burbujas de protección" onerror="this.remove()">
+        </div>
+      </div>
+      <div class="ba-col">
+        <span class="ba-tag">EMPAQUE SELLADO</span>
+        <div class="media" data-label="FOTO EVIDENCIA 2 · img/evidencia2.png">
+          <img src="img/evidencia2.png" alt="Plancha TYMO RING en su bolsa sellada, con cable y manual" onerror="this.remove()">
+        </div>
+      </div>
+      <div class="ba-col">
+        <span class="ba-tag">LISTA PARA USAR</span>
+        <div class="media" data-label="FOTO EVIDENCIA 3 · img/evidencia3.png">
+          <img src="img/evidencia3.png" alt="Plancha TYMO RING con sus botones de control" onerror="this.remove()">
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -550,28 +592,28 @@ footer .pqr a{color:var(--gold2);font-weight:800;word-break:break-all}
     <p class="lead reveal">Tenemos convenio directo con estas transportadoras para que tu paquete llegue rápido y bien protegido hasta tu ciudad.</p>
     <div class="transp">
       <div class="reveal" style="transition-delay:0s">
-        <div class="transp-card">
+        <a class="transp-card" href="https://aoneclicks.com.co/" target="_blank" rel="noopener">
           <div class="transp-logo"><img src="img/coordinadora-hd.png" alt="Logo de Coordinadora" loading="lazy" onerror="this.remove()" style="object-fit:cover;width:100%;height:100%"></div>
           <b>Coordinadora</b><span>CONVENIO</span>
-        </div>
+        </a>
       </div>
       <div class="reveal" style="transition-delay:.12s">
-        <div class="transp-card">
+        <a class="transp-card" href="https://aoneclicks.com.co/" target="_blank" rel="noopener">
           <div class="transp-logo"><img src="img/interrapidisimo-hd.png" alt="Logo de Interrapidísimo" loading="lazy" onerror="this.remove()" style="animation-delay:.4s"></div>
           <b>Interrapidísimo</b><span>CONVENIO</span>
-        </div>
+        </a>
       </div>
       <div class="reveal" style="transition-delay:.24s">
-        <div class="transp-card">
+        <a class="transp-card" href="https://aoneclicks.com.co/" target="_blank" rel="noopener">
           <div class="transp-logo"><img src="img/envia-hd.png" alt="Logo de Envía" loading="lazy" onerror="this.remove()" style="animation-delay:.8s"></div>
           <b>Envía</b><span>CONVENIO</span>
-        </div>
+        </a>
       </div>
       <div class="reveal" style="transition-delay:.36s">
-        <div class="transp-card">
+        <a class="transp-card" href="https://aoneclicks.com.co/" target="_blank" rel="noopener">
           <div class="transp-logo"><img src="img/tcc-hd.png" alt="Logo de TCC" loading="lazy" onerror="this.remove()" style="animation-delay:1.2s"></div>
           <b>TCC</b><span>CONVENIO</span>
-        </div>
+        </a>
       </div>
     </div>
   </div>
@@ -585,7 +627,7 @@ footer .pqr a{color:var(--gold2);font-weight:800;word-break:break-all}
     <div class="faq reveal" style="margin-top:28px;text-align:left">
       <details>
         <summary>¿Cuánto tarda el envío?</summary>
-        <p>Entre 2 y 5 días hábiles según tu ciudad. Te enviamos el número de guía por WhatsApp para que sigas tu pedido.</p>
+        <p>Entre 4 y 7 días hábiles según tu ciudad. Te enviamos el número de guía por WhatsApp para que sigas tu pedido.</p>
       </details>
       <details>
         <summary>¿Puedo pagar cuando llegue el pedido?</summary>
@@ -616,7 +658,7 @@ footer .pqr a{color:var(--gold2);font-weight:800;word-break:break-all}
   <div class="wrap center">
     <span class="kicker reveal">Último paso</span>
     <h2 class="reveal">Confirma tu pedido en 30 segundos</h2>
-    <p class="lead reveal">Déjanos tus datos y te escribimos por WhatsApp para confirmar tu envío. Pagas al recibir.</p>
+    <p class="lead reveal">Completa tus datos y confirma tu pedido en nuestra tienda segura. Pagas al recibir.</p>
     <div class="form-box reveal">
       <form class="form" id="form-pedido" novalidate>
         <div>
@@ -626,6 +668,10 @@ footer .pqr a{color:var(--gold2);font-weight:800;word-break:break-all}
         <div>
           <label for="telefono">Teléfono (WhatsApp)</label>
           <input id="telefono" name="telefono" type="tel" inputmode="tel" autocomplete="tel" placeholder="Ej: 300 123 4567" required>
+        </div>
+        <div>
+          <label for="correo">Correo electrónico</label>
+          <input id="correo" name="correo" type="email" inputmode="email" autocomplete="email" placeholder="Ej: valentina@correo.com" required>
         </div>
         <div>
           <label for="departamento">Departamento</label>
@@ -684,7 +730,9 @@ footer .pqr a{color:var(--gold2);font-weight:800;word-break:break-all}
 
 <!-- FOOTER -->
 <footer>
-  <img class="brand-foot" src="img/logo-aoneclicks.png" alt="AoneClicks Shopping" width="600" height="377" loading="lazy" onerror="this.remove()">
+  <a class="brand-link" href="https://aoneclicks.com.co/" target="_blank" rel="noopener" aria-label="Ir a la tienda AoneClicks Shopping">
+    <img class="brand-foot" src="img/logo-aoneclicks.png" alt="AoneClicks Shopping" width="600" height="377" loading="lazy" onerror="this.remove()">
+  </a>
   <nav>
     <a href="#">Términos y condiciones</a>
     <a href="#">Política de privacidad</a>
@@ -701,12 +749,19 @@ footer .pqr a{color:var(--gold2);font-weight:800;word-break:break-all}
   <a class="wa" id="wa" href="#" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg></a>
 </div>
 
+<!-- PESTAÑA FLOTANTE DE DUDAS -->
+<a class="dudas" id="dudas" href="#" target="_blank" rel="noopener" aria-label="¿Tienes dudas? Escríbenos por WhatsApp"><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg>¿Tienes dudas? Pregúntanos</a>
+
 <script>
 (function () {
   document.documentElement.classList.add('js');
 
   // Número de WhatsApp de la tienda (formato internacional sin +). Cámbialo por el tuyo.
-  var WA_NUMERO = '573000000000';
+  var WA_NUMERO = '573027350151';
+
+  // Tienda Shopify. "tienda": dominio de tu tienda. "variante": ID numérico de la variante del producto.
+  // Mientras "variante" tenga el valor de ejemplo, el formulario envía los datos por WhatsApp.
+  var SHOPIFY = { tienda: 'https://aoneclicks.com.co', variante: '67825096196190' };
 
   // Cuenta regresiva hasta medianoche
   var cuenta = document.getElementById('cuenta');
@@ -725,16 +780,21 @@ footer .pqr a{color:var(--gold2);font-weight:800;word-break:break-all}
 
   // Botón flotante: aparece después del hero
   var fab = document.getElementById('fab');
+  var dudas = document.getElementById('dudas');
   var hero = document.querySelector('.hero');
   function mostrarFab() {
-    fab.classList.toggle('show', window.scrollY > hero.offsetHeight * 0.6);
+    var mostrar = window.scrollY > hero.offsetHeight * 0.6;
+    fab.classList.toggle('show', mostrar);
+    dudas.classList.toggle('show', mostrar);
   }
   window.addEventListener('scroll', mostrarFab, { passive: true });
   mostrarFab();
 
   // WhatsApp con mensaje prellenado
-  document.getElementById('wa').href = 'https://wa.me/' + WA_NUMERO + '?text=' +
+  var mensajeWa = 'https://wa.me/' + WA_NUMERO + '?text=';
+  document.getElementById('wa').href = mensajeWa +
     encodeURIComponent('Hola, quiero pedir la Plancha TYMO RING ($70.900). ¿Me ayudas?');
+  dudas.href = mensajeWa + encodeURIComponent('Hola, tengo una duda sobre la Plancha TYMO RING.');
 
   // Animación al hacer scroll
   var reveal = document.querySelectorAll('.reveal');
@@ -759,20 +819,42 @@ footer .pqr a{color:var(--gold2);font-weight:800;word-break:break-all}
     e.preventDefault();
     var nombre = form.nombre.value.trim();
     var telefono = form.telefono.value.replace(/\D/g, '');
+    var correo = form.correo.value.trim();
     var departamento = form.departamento.value;
     var ciudad = form.ciudad.value.trim();
     var direccion = form.direccion.value.trim();
 
     if (nombre.length < 3) return mostrarError('Escribe tu nombre completo.', form.nombre);
     if (telefono.length < 7 || telefono.length > 15) return mostrarError('Revisa tu número de teléfono.', form.telefono);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) return mostrarError('Revisa tu correo electrónico.', form.correo);
     if (!departamento) return mostrarError('Selecciona tu departamento.', form.departamento);
     if (ciudad.length < 2) return mostrarError('Escribe tu ciudad.', form.ciudad);
     if (direccion.length < 6) return mostrarError('Escribe tu dirección completa.', form.direccion);
 
-    // Aquí conecta tu backend, CRM o endpoint de pedidos (fetch con los datos del formulario).
+    var partes = nombre.split(/\s+/);
+    var nombreCorto = partes.shift();
+    var apellidos = partes.join(' ') || nombreCorto;
+    var resumen = 'Departamento: ' + departamento + ' | Ciudad: ' + ciudad + ' | Teléfono: ' + telefono;
+
+    // Abre el carrito de Shopify con los datos ya escritos para que solo confirme el pedido.
+    // El departamento va en "note" porque Shopify no lo precarga en el campo de zona.
+    var datos = {
+      'checkout[email]': correo,
+      'checkout[shipping_address][first_name]': nombreCorto,
+      'checkout[shipping_address][last_name]': apellidos,
+      'checkout[shipping_address][phone]': telefono,
+      'checkout[shipping_address][address1]': direccion,
+      'checkout[shipping_address][city]': ciudad,
+      'checkout[shipping_address][country]': 'Colombia',
+      'note': resumen + ' | Dirección: ' + direccion
+    };
+    var query = Object.keys(datos).map(function (k) {
+      return encodeURIComponent(k) + '=' + encodeURIComponent(datos[k]);
+    }).join('&');
+
     msg.className = 'msg ok';
-    msg.textContent = '¡Pedido recibido! Te escribiremos por WhatsApp para confirmar tu envío.';
-    form.reset();
+    msg.textContent = 'Listo, te llevamos a la tienda para confirmar tu pedido...';
+    window.location.href = SHOPIFY.tienda.replace(/\/$/, '') + '/cart/' + SHOPIFY.variante + ':1?' + query;
   });
 
   function mostrarError(texto, campo) {
